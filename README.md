@@ -1,5 +1,3 @@
-[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=rahul_verma&url=https://github.com/fooble/ParallaxBackground-libgdx&title=ParallaxBackground-libgdx&language=&tags=github&category=software)
-
 ParallaxBackground-libgdx
 =========================
 
