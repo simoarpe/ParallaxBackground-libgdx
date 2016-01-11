@@ -35,7 +35,7 @@ Contribute
 -----
 Please do contribute if you feel like adding new features or improving present code. I will actively review and accept pull requests.
 
-Developed By
+Original Development
 -----
 [Rahul Verma][7]
 
