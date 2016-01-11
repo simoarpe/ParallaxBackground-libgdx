@@ -14,7 +14,7 @@ import com.badlogic.gdx.math.Vector2;
  *
  */
 public abstract class ParallaxLayer {
-	
+
 	/**
 	 * 
 	 * TileMode basically represents the way a layer has to repeat itself while scrolling. Parallax Scrolling can be performed infinitely in any direction if TileMode is set to <b>TileMode.repeat</b> in that direction. 
@@ -29,6 +29,7 @@ public abstract class ParallaxLayer {
 	
 
 	protected Vector2 parallaxRatio;
+	protected Vector2 parallaxRatioBelowY;
 	protected TileMode tileModeX = TileMode.repeat;
 	protected TileMode tileModeY = TileMode.single;
 	
@@ -55,6 +56,13 @@ public abstract class ParallaxLayer {
 		return parallaxRatio;
 	}
 
+	public Vector2 getParallaxRatio(boolean belowY) {
+		if(belowY) {
+			return  parallaxRatioBelowY;
+		}
+		return parallaxRatio;
+	}
+
 
 	/**
      * set the parallax scrolling ratio of this layer in x and y direction.
@@ -64,6 +72,11 @@ public abstract class ParallaxLayer {
 		if(this.parallaxRatio == null)
 			this.parallaxRatio = new Vector2();
 		this.parallaxRatio.set(parallaxRatio);
+		if (this.parallaxRatioBelowY == null) {
+			this.parallaxRatioBelowY = new Vector2();
+		}
+		this.parallaxRatioBelowY.set(parallaxRatio.x, 1);
+
 	}
 	
 	/**

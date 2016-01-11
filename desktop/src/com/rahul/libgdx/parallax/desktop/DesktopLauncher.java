@@ -11,16 +11,17 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		
 		Settings settings = new Settings();
-        settings.maxWidth = 1024;
-        settings.maxHeight = 1024;
+        settings.maxWidth = 1024*8;
+        settings.maxHeight = 1024*8;
         settings.filterMin=TextureFilter.Nearest;
         settings.filterMag=TextureFilter.Nearest;
-        
-        TexturePacker.process(settings, "C:/developement/LibgdxWorkspace/EscapeNew/design/images_packing_parallax_test", "C:/developement/LibgdxWorkspace/ParallaxBackgroundTest/core/assets/data", "main_atlas");
+
+//		TexturePacker.process(settings, "../../desktop/assets-raw", "../../core/assets/data", "main_atlas");
 		
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.width = 800;
 		config.height = 450;
+		config.vSyncEnabled=true;
 		new LwjglApplication(new GameListener(), config);
 	}
 }

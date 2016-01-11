@@ -32,14 +32,14 @@ public class GameListener extends ApplicationAdapter {
 	private final float worldWidth = 40;
 	private float worldHeight;
 	
-	private Color clearColor = new Color(0Xbeaf7bff);
+	private Color clearColor = new Color(0.25f,0.25f,0.25f, 1);
 	
 	
 	@Override
 	public void create () {
 		
-		worldHeight = Utils.calculateOtherDimension(WH.width, worldWidth, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		
+		//worldHeight = Utils.calculateOtherDimension(WH.width, worldWidth, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        worldHeight= 17;
 		batch = new SpriteBatch();
 	    worldCamera = new OrthographicCamera();
 	    worldCamera.setToOrtho(false,worldWidth,worldHeight);
@@ -55,28 +55,28 @@ public class GameListener extends ApplicationAdapter {
 		atlas = new TextureAtlas("data/main_atlas.atlas");
 
 		
-		TextureRegion mountainsRegionA = atlas.findRegion("mountains_a");
-		TextureRegionParallaxLayer mountainsLayerA = new TextureRegionParallaxLayer(mountainsRegionA, worldWidth, new Vector2(.3f,.3f), WH.width);
+		TextureRegion mountainsRegionA = atlas.findRegion("Layer0");
+		TextureRegionParallaxLayer mountainsLayerA = new TextureRegionParallaxLayer(mountainsRegionA, worldWidth*2, new Vector2(.3f,.6f), WH.width);
 	
-		TextureRegion mountainsRegionB = atlas.findRegion("mountains_b");
-		TextureRegionParallaxLayer mountainsLayerB = new TextureRegionParallaxLayer(mountainsRegionB, worldWidth*.7275f, new Vector2(.6f,.6f), WH.width);
-        mountainsLayerB.setPadLeft(.2725f*worldWidth);
+		TextureRegion mountainsRegionB = atlas.findRegion("Layer1");
+		TextureRegionParallaxLayer mountainsLayerB = new TextureRegionParallaxLayer(mountainsRegionB, worldWidth*2/**.7275f*/, new Vector2(.6f,.6f), WH.width);
+        //mountainsLayerB.setPadLeft(.2725f*worldWidth);
 		
-		TextureRegion cloudsRegion = atlas.findRegion("clouds");
-		TextureRegionParallaxLayer cloudsLayer = new TextureRegionParallaxLayer(cloudsRegion, worldWidth, new Vector2(.6f,.6f), WH.width);
-		cloudsLayer.setPadBottom(worldHeight*.467f);
+		TextureRegion cloudsRegion = atlas.findRegion("Layer2");
+		TextureRegionParallaxLayer cloudsLayer = new TextureRegionParallaxLayer(cloudsRegion, worldWidth*2, new Vector2(.6f,.6f), WH.width);
+		//cloudsLayer.setPadBottom(worldHeight*.467f);
 		
-		TextureRegion buildingsRegionA = atlas.findRegion("buildings_a");
-		TextureRegionParallaxLayer buildingsLayerA = new TextureRegionParallaxLayer(buildingsRegionA, worldWidth, new Vector2(.75f,.75f), WH.width);
+		TextureRegion buildingsRegionA = atlas.findRegion("Layer3");
+		TextureRegionParallaxLayer buildingsLayerA = new TextureRegionParallaxLayer(buildingsRegionA, worldWidth*2, new Vector2(.75f,.6f), WH.width);
        	
-		TextureRegion buildingsRegionB = atlas.findRegion("buildings_b");
-		TextureRegionParallaxLayer buildingsLayerB = new TextureRegionParallaxLayer(buildingsRegionB, worldWidth*.8575f, new Vector2(1,1), WH.width);
-       	buildingsLayerB.setPadLeft(.07125f*worldWidth);
-		buildingsLayerB.setPadRight(buildingsLayerB.getPadLeft());
+		TextureRegion buildingsRegionB = atlas.findRegion("Layer4");
+		TextureRegionParallaxLayer buildingsLayerB = new TextureRegionParallaxLayer(buildingsRegionB, worldWidth*2/**.8575f*/, new Vector2(1,.6f), WH.width);
+       	//buildingsLayerB.setPadLeft(.07125f*worldWidth);
+		//buildingsLayerB.setPadRight(buildingsLayerB.getPadLeft());
        	
-		TextureRegion buildingsRegionC = atlas.findRegion("buildings_c");
-		TextureRegionParallaxLayer buildingsLayerC = new TextureRegionParallaxLayer(buildingsRegionC, worldWidth, new Vector2(1.3f,1.3f), WH.width);
-       	
+		TextureRegion buildingsRegionC = atlas.findRegion("Layer5");
+		TextureRegionParallaxLayer buildingsLayerC = new TextureRegionParallaxLayer(buildingsRegionC, worldWidth*2, new Vector2(1.3f,1.3f), WH.width);
+
 		parallaxBackground = new ParallaxBackground();
     	parallaxBackground.addLayers(mountainsLayerA,mountainsLayerB,cloudsLayer,buildingsLayerA,buildingsLayerB,buildingsLayerC);
 		//parallaxBackground.addLayers(mountainsLayerA);
@@ -96,13 +96,13 @@ public class GameListener extends ApplicationAdapter {
 		batch.end();
 	}
 	
-	private final float deltaDimen = .5f;
+	private final float deltaDimen = .2f;
 	private void processInput() {
 		if(Gdx.input.isKeyPressed(Keys.LEFT)&&(worldCamera.position.x-worldCamera.viewportWidth*.5f>0))
 			worldCamera.position.sub(deltaDimen, 0, 0);
 		else if(Gdx.input.isKeyPressed(Keys.RIGHT))
 			worldCamera.position.add(deltaDimen, 0, 0);
-		else if(Gdx.input.isKeyPressed(Keys.DOWN)&&(worldCamera.position.y-worldCamera.viewportHeight*.5f>0))
+		else if(Gdx.input.isKeyPressed(Keys.DOWN))
 			worldCamera.position.sub(0, deltaDimen, 0);
 		else if(Gdx.input.isKeyPressed(Keys.UP))
 			worldCamera.position.add(0, deltaDimen, 0);
