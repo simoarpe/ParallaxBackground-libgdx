@@ -3,7 +3,6 @@ package com.rahul.libgdx.parallax;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
-import com.rahul.libgdx.parallax.Utils.WH;
 
 /**
  * 
@@ -35,8 +34,8 @@ public class TextureRegionParallaxLayer extends ParallaxLayer{
 	/**
 	 * Creates a TextureRegionParallaxLayer with regionWidth and regionHeight equal to parameters width and height. Paddings are set to 0.
 	 * @param texRegion the texture region
-	 * @param width width to be used as regionWidth
-	 * @param height height to be used as regionHeight
+	 * @param regionWidth width to be used as regionWidth
+	 * @param regionHeight height to be used as regionHeight
 	 * @param parallaxScrollRatio the parallax ratio in x and y direction
 	 */
 	public TextureRegionParallaxLayer(TextureRegion texRegion, float regionWidth, float regionHeight, Vector2 parallaxScrollRatio){
@@ -53,16 +52,16 @@ public class TextureRegionParallaxLayer extends ParallaxLayer{
 	 * @param parallaxScrollRatio the parallax ratio in x and y direction
 	 * @param wh what does oneDimen represent
 	 */
-	public TextureRegionParallaxLayer(TextureRegion texRegion, float oneDimen, Vector2 parallaxScrollRatio, WH wh){
+	public TextureRegionParallaxLayer(TextureRegion texRegion, float oneDimen, Vector2 parallaxScrollRatio, Utils.WH wh){
 		this.texRegion = texRegion;
 		switch(wh){
 		    case width:
 		    	setRegionWidth(oneDimen);
-		    	setRegionHeight(Utils.calculateOtherDimension(WH.width, oneDimen, this.texRegion));
+		    	setRegionHeight(Utils.calculateOtherDimension(Utils.WH.width, oneDimen, this.texRegion));
 		    	break;
 		    case height:
 		    	setRegionHeight(oneDimen);
-		    	setRegionWidth(Utils.calculateOtherDimension(WH.height, oneDimen, this.texRegion));
+		    	setRegionWidth(Utils.calculateOtherDimension(Utils.WH.height, oneDimen, this.texRegion));
 		    	break;
 		}
 		setParallaxRatio(parallaxScrollRatio);
@@ -127,7 +126,7 @@ public class TextureRegionParallaxLayer extends ParallaxLayer{
 
 	/**
 	 * sets the left padding
-	 * @param left padding
+	 * @param padLeft padding
 	 */
 	public void setPadLeft(float padLeft) {
 		this.padLeft = padLeft;
@@ -143,7 +142,7 @@ public class TextureRegionParallaxLayer extends ParallaxLayer{
 
 	/**
 	 * sets the right padding
-	 * @param right padding
+	 * @param padRight padding
 	 */
 	public void setPadRight(float padRight) {
 		this.padRight = padRight;
@@ -159,7 +158,7 @@ public class TextureRegionParallaxLayer extends ParallaxLayer{
 
 	/**
 	 * sets the bottom padding
-	 * @param bottom padding
+	 * @param padBottom padding
 	 */
 	public void setPadBottom(float padBottom) {
 		this.padBottom = padBottom;
@@ -175,7 +174,7 @@ public class TextureRegionParallaxLayer extends ParallaxLayer{
 
 	/**
 	 * sets the top padding
-	 * @param top padding
+	 * @param padTop padding
 	 */
 	public void setPadTop(float padTop) {
 		this.padTop = padTop;

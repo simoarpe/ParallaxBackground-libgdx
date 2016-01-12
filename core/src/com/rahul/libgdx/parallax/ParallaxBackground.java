@@ -6,7 +6,6 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
-import com.rahul.libgdx.parallax.ParallaxLayer.TileMode;
 /**
  * A ParallaxBacground encapsulates the logic to Render ParallaxLayers.
  * It owns a collection of ParallaxLayers. 
@@ -77,19 +76,19 @@ public class ParallaxBackground {
 			worldCamera.position.set(origCameraPos.scl(layer.getParallaxRatio(belowY)), cachedPos.z);
 			worldCamera.update();
 			batch.setProjectionMatrix(worldCamera.combined);
-			float currentX = (layer.getTileModeX().equals(TileMode.single) ? 0 : ((int) ((worldCamera.position.x - worldCamera.viewportWidth * .5f * worldCamera.zoom) / layer.getWidth())) * layer.getWidth()) - (Math.abs((1 - layer.getParallaxRatio().x) % 1) * worldCamera.viewportWidth * .5f);
+			float currentX = (layer.getTileModeX().equals(ParallaxLayer.TileMode.single) ? 0 : ((int) ((worldCamera.position.x - worldCamera.viewportWidth * .5f * worldCamera.zoom) / layer.getWidth())) * layer.getWidth()) - (Math.abs((1 - layer.getParallaxRatio().x) % 1) * worldCamera.viewportWidth * .5f);
 			do {
-				float currentY = (layer.getTileModeY().equals(TileMode.single) ? 0 : ((int) ((worldCamera.position.y - worldCamera.viewportHeight * .5f * worldCamera.zoom) / layer.getHeight())) * layer.getHeight()) - (((1 - layer.getParallaxRatio(belowY).y) % 1) * worldCamera.viewportHeight * .5f);
+				float currentY = (layer.getTileModeY().equals(ParallaxLayer.TileMode.single) ? 0 : ((int) ((worldCamera.position.y - worldCamera.viewportHeight * .5f * worldCamera.zoom) / layer.getHeight())) * layer.getHeight()) - (((1 - layer.getParallaxRatio(belowY).y) % 1) * worldCamera.viewportHeight * .5f);
 				do {
 					if (!((worldCamera.position.x - worldCamera.viewportWidth * worldCamera.zoom * .5f > currentX + layer.getWidth()) || (worldCamera.position.x + worldCamera.viewportWidth * worldCamera.zoom * .5f < currentX) || (worldCamera.position.y - worldCamera.viewportHeight * worldCamera.zoom * .5f > currentY + layer.getHeight()) || (worldCamera.position.y + worldCamera.viewportHeight * worldCamera.zoom * .5f < currentY)))
 						layer.draw(batch, currentX, currentY);
 					currentY += layer.getHeight();
-					if (layer.getTileModeY().equals(TileMode.single))
+					if (layer.getTileModeY().equals(ParallaxLayer.TileMode.single))
 						break;
 				}
 				while (currentY < worldCamera.position.y + worldCamera.viewportHeight * worldCamera.zoom * .5f);
 				currentX += layer.getWidth();
-				if (layer.getTileModeX().equals(TileMode.single))
+				if (layer.getTileModeX().equals(ParallaxLayer.TileMode.single))
 					break;
 			}
 			while (currentX < worldCamera.position.x + worldCamera.viewportWidth * worldCamera.zoom * .5f);
